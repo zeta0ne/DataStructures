@@ -10,7 +10,7 @@ namespace DataStructures
 
         public ArrayList(int[] array) //конструктор 
         {
-            _array = new int[(int)(array.Length * 1.33d)]; 
+            _array = new int[(int)(array.Length * 1.33d)]; //умножение на 1.33 чтобы размер был больше 0
             Length = array.Length;
             Array.Copy(array, _array, array.Length);
         }
@@ -38,9 +38,10 @@ namespace DataStructures
 
         public void AddToFirst(int value)
         {
-            if (Length == _array.Length)
+            if (Length <= _array.Length)
             {
                 IncreaseLength();
+                
             }
             int[] newArr = new int[_array.Length];
             for (int i = 0; i <= Length; i++)
