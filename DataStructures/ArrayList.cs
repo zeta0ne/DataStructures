@@ -94,7 +94,12 @@ namespace DataStructures
                     _array[i] = _array[i + 1];
                 }
             }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
             Length--;
+
         }
 
         public int GetLength(int[] array)
@@ -192,6 +197,41 @@ namespace DataStructures
             }
             return minValIn;
         }
+
+        public void SortByAscending()
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                for (int j = 0; j < Length; j++)
+                {
+                    int minIndex = _array[i];
+                    if (_array[j] > minIndex)
+                    {
+                        minIndex = _array[j];
+                        _array[j] = _array[i];
+                        _array[i] = minIndex;
+                    }
+                }
+            }
+        }
+
+        public void SortByDescending()
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                for (int j = 0; j < Length; j++)
+                {
+                    int minIndex = _array[i];
+                    if (_array[j] < minIndex)
+                    {
+                        minIndex = _array[j];
+                        _array[j] = _array[i];
+                        _array[i] = minIndex;
+                    }
+                }
+            }
+        }
+
 
 
         private void IncreaseLength(int number = 1)

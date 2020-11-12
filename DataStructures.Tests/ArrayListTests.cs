@@ -42,22 +42,40 @@ namespace DataStructures.Tests
         [TestCase(2, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 4, 5 })]
         [TestCase(0, new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3, 4, 5 })]
         [TestCase(4, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4 })]
-        [TestCase(0, new int[] { 1 }, new int[0] { })]
-        public void RemoveTest(int index, int[] array, int[]expArr)
+        public void RemoveIndexTest(int index, int[] array, int[]expArr)
         {
             ArrayList expected = new ArrayList(expArr);
             ArrayList actual = new ArrayList(array);
             actual.RemoveIndex(index);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(0, new int[] { 1 }, new int[0] { })]
+        public void RemoveIndexTestNegative(int index, int[] array, int[] expArr)
+        {
+            ArrayList expected = new ArrayList(expArr);
+            ArrayList actual = new ArrayList(array);
+
+            Assert.Throws<IndexOutOfRangeException>(() => { actual.RemoveIndex(index); });
+        }
+
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4 })]
-        [TestCase(new int[] { 1 }, new int[] { })]
+        
         public void RemoveLastTest(int[] array, int[] expArr)
         {
             ArrayList expected = new ArrayList(expArr);
             ArrayList actual = new ArrayList(array);
             actual.RemoveLast();
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1 }, new int[] { })]
+        public void RemoveLastTestNegative(int[] array, int[] expArr)
+        {
+            ArrayList expected = new ArrayList(expArr);
+            ArrayList actual = new ArrayList(array);
+
+            Assert.Throws<IndexOutOfRangeException>(() => { actual.RemoveLast(); });
         }
 
         [TestCase(new int[0] { }, 0, 0)]
@@ -83,8 +101,8 @@ namespace DataStructures.Tests
             int actual = arr.GetIndexByValue(value);
             Assert.AreEqual(expected, actual);
         }
+
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 3, 8, new int[] { 1, 2, 3, 8, 5 })]
-        
         public void ChangeValueByIndexTest(int[] array, int index, int value, int[] expArr)
         {
             ArrayList expected = new ArrayList(expArr);
@@ -164,6 +182,28 @@ namespace DataStructures.Tests
             {
                 int actual = arr.GetMinValueIndex();
             });
+        }
+
+        [TestCase(new int[] { 9, 1, 4 }, new int[] { 1, 4, 9 })]
+        [TestCase(new int[] {  }, new int[] { })]
+        [TestCase(new int[] { 9, 1, 0 }, new int[] { 0, 1, 9 })]
+        public void SortByAscendingTest(int[] array, int[] expArray)
+        {
+            ArrayList actual = new ArrayList(array);
+            ArrayList expected = new ArrayList(expArray);
+            actual.SortByAscending();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 0, 17, 3 }, new int[] { 17, 3, 0 })]
+        [TestCase(new int[] { }, new int[] { })]
+
+        public void SortByDescendingTest(int[]array, int[] expArray)
+        {
+            ArrayList actual = new ArrayList(array);
+            ArrayList expected = new ArrayList(expArray);
+            actual.SortByDescending();
+            Assert.AreEqual(expected, actual);
         }
 
     }
