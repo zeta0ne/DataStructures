@@ -232,7 +232,28 @@ namespace DataStructures
             }
         }
 
+        public void RemoveValues(int value)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    RemoveIndex(i);
+                }
+            }
+        }
 
+        public void RemoveFirstValue(int value)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    RemoveIndex(i);
+                    return;
+                }
+            }
+        }
 
         private void IncreaseLength(int number = 1)
         {

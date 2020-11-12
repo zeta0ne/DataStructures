@@ -206,5 +206,28 @@ namespace DataStructures.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { 1, 2, 4, 2, 7, 2}, 2, new int[] { 1, 4, 7})]
+        //[TestCase(new int[] { 0, 0, 0 }, 0, new int[] { })]
+        //[TestCase(new int[] { 1, 1, 1 }, 1, new int[] { })]
+        //[TestCase(new int[] { 1, 2, 3 }, 5, new int[] { 1, 2, 3 })] negative
+        public void RemoveValuesTest(int[] array, int value, int[] expArr)
+        {
+            ArrayList actual = new ArrayList(array);
+            ArrayList expected = new ArrayList(expArr);
+            actual.RemoveValues(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 4, 2, 7, 2 }, 2, new int[] { 1, 4, 2, 7, 2 })]
+        //[TestCase(new int[] { 0, 0, 0 }, 0, new int[] { 0, 0 })]
+        //[TestCase(new int[] { 1, 1, 1 }, 1, new int[] { 1, 1 })]
+        public void RemoveFirstValueTest(int[] array, int value, int[] expArr)
+        {
+            ArrayList actual = new ArrayList(array);
+            ArrayList expected = new ArrayList(expArr);
+            actual.RemoveFirstValue(value);
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
