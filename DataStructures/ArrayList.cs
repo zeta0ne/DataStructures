@@ -23,6 +23,12 @@ namespace DataStructures
             Length = 0; //значение полезной длины по умолчанию при создании объекта конструктором
         }
 
+        public ArrayList(int i) //конструктор 
+        {
+            _array = new int[1] { i }; 
+            Length = 1;
+        }
+
         public override string ToString()
         {
             return string.Join(";", _array.Take(Length));
@@ -253,6 +259,11 @@ namespace DataStructures
                     return;
                 }
             }
+        }
+
+        public void AddArrayOfValues()
+        {
+
         }
 
         private void IncreaseLength(int number = 1)
