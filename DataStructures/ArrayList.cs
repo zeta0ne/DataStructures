@@ -36,6 +36,8 @@ namespace DataStructures
             }
             _array[Length] = value;
             Length++;
+
+
         }
 
         public void AddToFirst(int value)
@@ -71,21 +73,6 @@ namespace DataStructures
             Length++;
             _array[index] = value;
 
-            //int[] newArr = new int[_array.Length];
-            //Length++;
-            //for (int i = 0; i < index; i++)
-            //{
-            //    newArr[i] = _array[i];
-            //}
-            //for (int i = index; i <= Length; i++)
-            //{
-            //    if (i <= _array.Length)
-            //    {
-            //        newArr[i + 1] = _array[i];
-            //    }
-            //}
-            //newArr[index] = value;
-            //_array = newArr;
         }
 
         public void RemoveFirst()
@@ -141,9 +128,70 @@ namespace DataStructures
             {
                 throw new IndexOutOfRangeException();
             }
-
         }
 
+        public void Reverse()
+        {
+            int t = 0;
+            for (int i = 0; i < _array.Length/2; i++)
+            {
+                t = _array[i];
+                _array[i] = _array[Length - 1 - i];
+                _array[Length - 1 - i] = t;
+            }
+        }
+
+        public int GetMaxValue()
+        {
+            int maxVal = _array[0];
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] > maxVal)
+                {
+                    maxVal = _array[i];
+                }
+            }
+            return maxVal;
+        }
+
+        public int GetMinValue()
+        {
+            int minVal = _array[0];
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] < minVal)
+                {
+                    minVal = _array[i];
+                }
+            }
+            return minVal;
+        }
+
+        public int GetMaxValueIndex()
+        {
+            int maxValIn = _array[0];
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] > maxValIn)
+                {
+                    maxValIn = i;
+                }
+            }
+            return maxValIn;
+        }
+
+        public int GetMinValueIndex()
+        {
+            int minValIn = _array[0];
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] < minValIn)
+                {
+                    minValIn = i;
+                }
+            }
+            return minValIn;
+        }
 
 
         private void IncreaseLength(int number = 1)

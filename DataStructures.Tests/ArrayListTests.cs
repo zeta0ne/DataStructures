@@ -98,12 +98,72 @@ namespace DataStructures.Tests
         {
             ArrayList expected = new ArrayList(expArr);
             ArrayList actual = new ArrayList(array);
-            
             Assert.Throws <IndexOutOfRangeException> (()=>
             {
                 actual.ChangeValueByIndex(index, value);
             });
 
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 4, 3, 2, 1 })]
+        [TestCase(new int[] { }, new int[] { })]
+        public void ReverseTest(int[] array, int[] expArr)
+        {
+            ArrayList expected = new ArrayList(expArr);
+            ArrayList actual = new ArrayList(array);
+            actual.Reverse();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 6, 0 }, 6 )]
+        //[TestCase(new int[] { }, 0)]
+        [TestCase(new int[] { 0, 0, 0, -1 }, 0)]
+        public void GetMaxValueTest(int[] array, int expected)
+        {
+            ArrayList arr = new ArrayList(array);
+            int actual = arr.GetMaxValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 6, 0 }, 0)]
+        //[TestCase(new int[] { }, 0)]
+        [TestCase(new int[] { 0, 0, 0, -1 }, -1)]
+        public void GetMinValueTest(int[] array, int expected)
+        {
+            ArrayList arr = new ArrayList(array);
+            int actual = arr.GetMinValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 6, 0 }, 1)]
+        //[TestCase(new int[] { }, 0)]
+        [TestCase(new int[] { 0, 0, 0, -1 }, 0)]
+        public void GetMaxValueIndexTest(int[] array, int expected)
+        {
+            ArrayList arr = new ArrayList(array);
+            int actual = arr.GetMaxValueIndex();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 6, 0 }, 2)]
+        [TestCase(new int[] { 1, 0, 7 }, 1)]
+        [TestCase(new int[] { 0, 0, 0, -1 }, 3)]
+        public void GetMinValueIndexTest(int[] array, int expected)
+        {
+            ArrayList arr = new ArrayList(array);
+            int actual = arr.GetMinValueIndex();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { }, 0)]
+        public void GetMinValueIndexTestNegative(int[] array, int expected)
+        {
+            ArrayList arr = new ArrayList(array);
+            
+            Assert.Throws<IndexOutOfRangeException>(()=>
+            {
+                int actual = arr.GetMinValueIndex();
+            });
         }
 
     }
