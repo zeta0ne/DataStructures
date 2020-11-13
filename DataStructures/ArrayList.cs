@@ -9,6 +9,7 @@ namespace DataStructures
         //вынести 1.33 в константу
         public int Length { get; private set; } //автоматическое свойство чтобы обращаться к полезной длине
 
+
         public ArrayList(int[] array) //конструктор 
             //конструктор создаёт пустой массив
         {
@@ -27,6 +28,27 @@ namespace DataStructures
         {
             _array = new int[1] { i }; 
             Length = 1;
+        }
+
+        // Создание индексаторов для класса
+        public int this[int i]
+        {
+            get
+            {
+                if (i >= Length || i < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                return _array[i];
+            }
+            set
+            {
+                if (i >= Length || i < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                _array[i] = value;
+            }
         }
 
         public override string ToString()
@@ -93,11 +115,12 @@ namespace DataStructures
         //make private?
         public void RemoveIndex(int index)
         {
+            
             if (Length > 1)
             {
                 for (int i = index; i < Length; i++)
                 {
-                    _array[i] = _array[i + 1];
+                   _array[i] = _array[i + 1];
                 }
             }
             else
@@ -240,11 +263,20 @@ namespace DataStructures
 
         public void RemoveValues(int value)
         {
+            int q = 0;
             for (int i = 0; i < Length; i++)
             {
                 if (_array[i] == value)
                 {
+                //    q++;
                     RemoveIndex(i);
+
+                //}
+                //else
+                //{
+                //    _array[i - q] = _array[i];
+                //    Length--;
+                //    q = 0;
                 }
             }
         }
@@ -255,16 +287,65 @@ namespace DataStructures
             {
                 if (_array[i] == value)
                 {
-                    RemoveIndex(i);
-                    return;
+                    //RemoveIndex(i);
+                    //return;               
                 }
             }
         }
 
-        public void AddArrayOfValues()
+        public void AddArrayToFirstIndex(int[] values)
         {
-
+            //подвинуть все элементы на вэльюс.Ленгтх клеток
+            //записать элементы из вэльюс на пустые места
+            if ((Length + values.Length) >= _array.Length)
+            {
+                IncreaseLength(values.Length);
+            }
+            for (int i = 0; i < Length; i++)
+            {
+                _array[(Length + values.Length) - 1 - i] = _array[Length - 1 - i];
+            }
+            for (int i = 0; i < values.Length; i++)
+            {
+                _array[i] = values[i];
+            }
+            Length += values.Length;
         }
+
+        public void AddArrayToEndOfList(int[] values)
+        {
+            if ((Length + values.Length) >= _array.Length)
+            {
+                IncreaseLength(values.Length);
+            }
+            
+            for (int i = 0; i < values.Length; i++)
+            {
+                _array[Length + i] = values[i];
+            }
+            Length += values.Length;
+        }
+
+        public void AddArrayToIndex(int[] values, int index)
+        {
+            //подвинуть все элементы на вэльюс.Ленгтх клеток
+            //записать элементы из вэльюс на пустые места
+            if ((Length + values.Length) >= _array.Length)
+            {
+                IncreaseLength(values.Length);
+            }
+            for (int i = 0; i < Length - index; i++)
+            {
+                _array[(Length + values.Length) - 1 - i] = _array[Length - 1 - i];
+            }
+            for (int i = 0; i < values.Length; i++)
+            {
+                _array[index + i] = values[i];
+            }
+            Length += values.Length;
+        }
+
+
 
         private void IncreaseLength(int number = 1)
         {

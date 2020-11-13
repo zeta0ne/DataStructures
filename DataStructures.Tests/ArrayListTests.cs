@@ -134,7 +134,7 @@ namespace DataStructures.Tests
         }
 
         [TestCase(new int[] { 1, 6, 0 }, 6)]
-        //[TestCase(new int[] { }, 0)]
+        //[TestCase(new int[] { }, 0)] //invalid operation exception
         [TestCase(new int[] { 0, 0, 0, -1 }, 0)]
         public void GetMaxValueTest(int[] array, int expected)
         {
@@ -207,8 +207,9 @@ namespace DataStructures.Tests
         }
 
         [TestCase(new int[] { 1, 2, 4, 2, 7, 2 }, 2, new int[] { 1, 4, 7 })]
-        //[TestCase(new int[] { 0, 0, 0 }, 0, new int[] { })]
-        //[TestCase(new int[] { 1, 1, 1 }, 1, new int[] { })]
+        [TestCase(new int[] { 1, 2, 4, 2, 7, 2, 2 }, 2, new int[] { 1, 4, 7 })]
+        [TestCase(new int[] { 0, 0, 0 }, 0, new int[] { })]
+        [TestCase(new int[] { 1, 1, 1 }, 1, new int[] { })]
         //[TestCase(new int[] { 1, 2, 3 }, 5, new int[] { 1, 2, 3 })] negative
         public void RemoveValuesTest(int[] array, int value, int[] expArr)
         {
@@ -219,8 +220,8 @@ namespace DataStructures.Tests
         }
 
         [TestCase(new int[] { 1, 2, 4, 2, 7, 2 }, 2, new int[] { 1, 4, 2, 7, 2 })]
-        //[TestCase(new int[] { 0, 0, 0 }, 0, new int[] { 0, 0 })]
-        //[TestCase(new int[] { 1, 1, 1 }, 1, new int[] { 1, 1 })]
+        [TestCase(new int[] { 0, 0, 0 }, 0, new int[] { 0, 0 })]
+        [TestCase(new int[] { 1, 1, 1 }, 1, new int[] { 1, 1 })]
         public void RemoveFirstValueTest(int[] array, int value, int[] expArr)
         {
             ArrayList actual = new ArrayList(array);
@@ -234,10 +235,45 @@ namespace DataStructures.Tests
         {
             ArrayList actual = new ArrayList(value);
             ArrayList expected = new ArrayList(expArr);
-            
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 1, 1 }, new int[] { 1, 2, 3, 1, 1, 1 })]
+        [TestCase(new int[] { 0, 0, 0 }, new int[] { 1, 2, 3 }, new int[] { 0, 0, 0, 1, 2, 3 })]
+        [TestCase(new int[] { }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] { }, new int[] { }, new int[] { })]
+        public void AddArrayToFirstIndexTest(int[] values, int[] array, int[] expArr)
+        {
+            ArrayList actual = new ArrayList(array);
+            ArrayList expected = new ArrayList(expArr);
+            actual.AddArrayToFirstIndex(values);
+            Assert.AreEqual(expected, actual);
+        }
 
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 1, 1 }, new int[] {  1, 1, 1, 1, 2, 3 })]
+        [TestCase(new int[] { 0, 0, 0 }, new int[] { 1, 2, 3 }, new int[] {  1, 2, 3, 0, 0, 0 })]
+        [TestCase(new int[] { }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] { }, new int[] { }, new int[] { })]
+        public void AddArrayToEndOfListTest(int[] values, int[] array, int[] expArr)
+        {
+            ArrayList actual = new ArrayList(array);
+            ArrayList expected = new ArrayList(expArr);
+            actual.AddArrayToEndOfList(values);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 3, 2, 4 }, 2, new int[] { 1, 1, 1, 1, 1 }, new int[] { 1, 1, 3, 2, 4, 1, 1, 1 })]
+        //[TestCase(new int[] { 0, 0, 0 }, 3, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3, 0, 0, 0 })] indexoutofb
+        [TestCase(new int[] { }, 0, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] { 6, 7, 8 }, 0, new int[] { 1, 2, 3 }, new int[] { 6, 7, 8, 1, 2, 3 })]
+        [TestCase(new int[] { 6}, 0, new int[] { 1, 2, 3 }, new int[] { 6, 1, 2, 3 })]
+        //[TestCase(new int[] { }, 0, new int[] { }, new int[] { })] neg
+        public void AddArrayToIndexTest(int[] values, int index, int[] array, int[] expArr)
+        {
+            ArrayList actual = new ArrayList(array);
+            ArrayList expected = new ArrayList(expArr);
+            actual.AddArrayToIndex(values, index);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
