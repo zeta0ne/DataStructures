@@ -107,11 +107,27 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 1, 0)]
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 3, 2)]
         [TestCase(new int[] { 0 }, 0, 0)]
-        public void GetIndexByValue(int[] array, int value, int expected)
+        public void GetIndexByValueTest(int[] array, int value, int expected)
         {
             LL.LinkedList arr = new LL.LinkedList(array);
             int actual = arr.GetIndexByValue(value);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 8, 1, new int[] { 1, 8, 3, 4, 5 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 8, 0, new int[] { 8, 2, 3, 4, 5 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 8, 4, new int[] { 1, 2, 3, 4, 8 })]
+        [TestCase(new int[] { 1 }, 8, 0, new int[] { 8 })]
+        //[TestCase(new int[] { }, 8, 0, new int[] { 8 })] null ref
+        public void ChangeValueByIndex(int[] array, int value, int index, int[] expArr)
+        {
+            LL.LinkedList expected = new LL.LinkedList(expArr);
+            LL.LinkedList actual = new LL.LinkedList(array);
+
+            actual.ChangeValueByIndex(value, index);
+            Assert.AreEqual(expected, actual);
+        }
+
+
     }
 }

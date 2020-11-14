@@ -212,6 +212,38 @@ namespace DataStructures.LL
             return index;
         }
 
+        public void ChangeValueByIndex(int value, int index)
+        {
+            if (Length != 0)
+            {
+                if (index == 0) //отдельная обработка рута
+                {
+                    Node tmp = _root; //сохраняем рут во временную переменную чтобы не потерять
+                    _root = new Node(value); //новый рут
+                    _root.Next = tmp.Next; //новый рут теперь ссылается на второй элемент списка, сохранённого в тмп
+                }
+                else
+                {
+                    Node current = _root; //временная переменная чтобы от начала списка бежать по нему до определённого индекса
+                    for (int i = 1; i < index; i++) //нужно прибежать на одну клетку раньше, чтобы с этой клетки кинуть ссылку на новый нод
+                    {
+                        current = current.Next;
+                    }
+                    Node tmp = current.Next.Next; //временная переменная чтобы сохранить ссылку на элемент который будет после изменённого
+                    current.Next = new Node(value); //новый нод с нужным значением на месте следующего за тем, до которого мы дошли в цикле
+                                                    //в каррент.Некст теперь лежит ссылка на новый элемент
+                    //current - ссылка на элемент перед нужным индексом, на котором остановился цикл
+                    //каррент.Некст - ссылка на теперь уже новый нод
+                    //каррент.Некст.Некст = тмп - в следующий элемент кидается ссылка из тмп на весь оставшийся список
+                    current.Next.Next = tmp;
+                }
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
         public override bool Equals(object obj)
         {
             LinkedList linkedList = (LinkedList)obj;
