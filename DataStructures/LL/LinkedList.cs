@@ -189,7 +189,28 @@ namespace DataStructures.LL
             }
         }
 
+        public int GetLength()
+        {
+            return Length;
+        }
 
+        public int GetValueByIndex(int index)
+        {
+            return this[index];
+        }
+
+        public int GetIndexByValue(int value)
+        {
+            int index = 0;
+            for (int i = 0; i < Length; i++)
+            {
+                if (this[i] == value)
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }
 
         public override bool Equals(object obj)
         {
