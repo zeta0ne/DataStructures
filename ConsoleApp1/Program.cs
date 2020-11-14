@@ -7,8 +7,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            ArrayList arrL = new ArrayList(new int[] { 33, 0, 0 });
-
+            LinkedList linkL = new LinkedList(new int[] { 33, 1, 2 });
+            int first = linkL[0];
+            Console.WriteLine(first);
 
         }
     }

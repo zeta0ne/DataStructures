@@ -11,8 +11,8 @@ namespace DataStructures.Tests
         [TestCase(33, new int[0] { }, new int[1] { 33 })]
         public void AddToEndTest(int value, int[] array, int[] expArr)
         {
-            ArrayList expected = new ArrayList(expArr);
-            ArrayList actual = new ArrayList(array);
+            LinkedList expected = new LinkedList(expArr);
+            LinkedList actual = new LinkedList(array);
             actual.AddToEnd(value);
             Assert.AreEqual(expected, actual);
         }
@@ -22,8 +22,8 @@ namespace DataStructures.Tests
         [TestCase(33, new int[3] { 0, 0, 0 }, new int[4] { 33, 0, 0, 0 })]
         public void AddToFirstTest(int value, int[] array, int[] expArr)
         {
-            ArrayList expected = new ArrayList(expArr);
-            ArrayList actual = new ArrayList(array);
+            LinkedList expected = new LinkedList(expArr);
+            LinkedList actual = new LinkedList(array);
             actual.AddToFirst(value);
             Assert.AreEqual(expected, actual);
         }
@@ -33,8 +33,8 @@ namespace DataStructures.Tests
         [TestCase(0, 33, new int[3] { 0, 0, 0 }, new int[4] { 33, 0, 0, 0 })]
         public void AddToIndexTest(int index, int value, int[] array, int[] expArr)
         {
-            ArrayList expected = new ArrayList(expArr);
-            ArrayList actual = new ArrayList(array);
+            LinkedList expected = new LinkedList(expArr);
+            LinkedList actual = new LinkedList(array);
             actual.AddToIndex(index, value);
             Assert.AreEqual(expected, actual);
         }
@@ -44,8 +44,8 @@ namespace DataStructures.Tests
         [TestCase(4, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4 })]
         public void RemoveIndexTest(int index, int[] array, int[] expArr)
         {
-            ArrayList expected = new ArrayList(expArr);
-            ArrayList actual = new ArrayList(array);
+            LinkedList expected = new LinkedList(expArr);
+            LinkedList actual = new LinkedList(array);
             actual.RemoveIndex(index);
             Assert.AreEqual(expected, actual);
         }
@@ -53,8 +53,8 @@ namespace DataStructures.Tests
         [TestCase(0, new int[] { 1 }, new int[0] { })]
         public void RemoveIndexTestNegative(int index, int[] array, int[] expArr)
         {
-            ArrayList expected = new ArrayList(expArr);
-            ArrayList actual = new ArrayList(array);
+            LinkedList expected = new LinkedList(expArr);
+            LinkedList actual = new LinkedList(array);
 
             Assert.Throws<IndexOutOfRangeException>(() => { actual.RemoveIndex(index); });
         }
@@ -63,8 +63,8 @@ namespace DataStructures.Tests
 
         public void RemoveLastTest(int[] array, int[] expArr)
         {
-            ArrayList expected = new ArrayList(expArr);
-            ArrayList actual = new ArrayList(array);
+            LinkedList expected = new LinkedList(expArr);
+            LinkedList actual = new LinkedList(array);
             actual.RemoveLast();
             Assert.AreEqual(expected, actual);
         }
@@ -72,8 +72,8 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 1 }, new int[] { })]
         public void RemoveLastTestNegative(int[] array, int[] expArr)
         {
-            ArrayList expected = new ArrayList(expArr);
-            ArrayList actual = new ArrayList(array);
+            LinkedList expected = new LinkedList(expArr);
+            LinkedList actual = new LinkedList(array);
 
             Assert.Throws<IndexOutOfRangeException>(() => { actual.RemoveLast(); });
         }
@@ -81,7 +81,7 @@ namespace DataStructures.Tests
         [TestCase(new int[0] { }, 0, 0)]
         public void GetLengthTest(int[] array, int expected, int actual)
         {
-            ArrayList arr = new ArrayList(array);
+            LinkedList arr = new LinkedList(array);
             actual = arr.GetLength(array);
             Assert.AreEqual(expected, actual);
         }
@@ -89,7 +89,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 1, 2, 3, 4 }, 2, 3)]
         public void GetValueByIndexTest(int[] array, int index, int expected)
         {
-            ArrayList arr = new ArrayList(array);
+            LinkedList arr = new LinkedList(array);
             int actual = arr.GetValueByIndex(index);
             Assert.AreEqual(expected, actual);
         }
@@ -97,7 +97,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 1, 2, 3, 4 }, 3, 2)]
         public void GetIndexByValueTest(int[] array, int value, int expected)
         {
-            ArrayList arr = new ArrayList(array);
+            LinkedList arr = new LinkedList(array);
             int actual = arr.GetIndexByValue(value);
             Assert.AreEqual(expected, actual);
         }
@@ -105,8 +105,8 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 3, 8, new int[] { 1, 2, 3, 8, 5 })]
         public void ChangeValueByIndexTest(int[] array, int index, int value, int[] expArr)
         {
-            ArrayList expected = new ArrayList(expArr);
-            ArrayList actual = new ArrayList(array);
+            LinkedList expected = new LinkedList(expArr);
+            LinkedList actual = new LinkedList(array);
             actual.ChangeValueByIndex(index, value);
             Assert.AreEqual(expected, actual);
         }
@@ -114,8 +114,8 @@ namespace DataStructures.Tests
         [TestCase(new int[] { }, 0, 8, new int[] { 8 })]
         public void ChangeValueByIndexTestNegative(int[] array, int index, int value, int[] expArr)
         {
-            ArrayList expected = new ArrayList(expArr);
-            ArrayList actual = new ArrayList(array);
+            LinkedList expected = new LinkedList(expArr);
+            LinkedList actual = new LinkedList(array);
             Assert.Throws<IndexOutOfRangeException>(() =>
           {
               actual.ChangeValueByIndex(index, value);
@@ -127,8 +127,8 @@ namespace DataStructures.Tests
         [TestCase(new int[] { }, new int[] { })]
         public void ReverseTest(int[] array, int[] expArr)
         {
-            ArrayList expected = new ArrayList(expArr);
-            ArrayList actual = new ArrayList(array);
+            LinkedList expected = new LinkedList(expArr);
+            LinkedList actual = new LinkedList(array);
             actual.Reverse();
             Assert.AreEqual(expected, actual);
         }
@@ -138,7 +138,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 0, 0, 0, -1 }, 0)]
         public void GetMaxValueTest(int[] array, int expected)
         {
-            ArrayList arr = new ArrayList(array);
+            LinkedList arr = new LinkedList(array);
             int actual = arr.GetMaxValue();
             Assert.AreEqual(expected, actual);
         }
@@ -148,7 +148,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 0, 0, 0, -1 }, -1)]
         public void GetMinValueTest(int[] array, int expected)
         {
-            ArrayList arr = new ArrayList(array);
+            LinkedList arr = new LinkedList(array);
             int actual = arr.GetMinValue();
             Assert.AreEqual(expected, actual);
         }
@@ -158,7 +158,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 0, 0, 0, -1 }, 0)]
         public void GetMaxValueIndexTest(int[] array, int expected)
         {
-            ArrayList arr = new ArrayList(array);
+            LinkedList arr = new LinkedList(array);
             int actual = arr.GetMaxValueIndex();
             Assert.AreEqual(expected, actual);
         }
@@ -168,7 +168,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 0, 0, 0, -1 }, 3)]
         public void GetMinValueIndexTest(int[] array, int expected)
         {
-            ArrayList arr = new ArrayList(array);
+            LinkedList arr = new LinkedList(array);
             int actual = arr.GetMinValueIndex();
             Assert.AreEqual(expected, actual);
         }
@@ -176,7 +176,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { }, 0)]
         public void GetMinValueIndexTestNegative(int[] array, int expected)
         {
-            ArrayList arr = new ArrayList(array);
+            LinkedList arr = new LinkedList(array);
 
             Assert.Throws<IndexOutOfRangeException>(() =>
             {
@@ -189,8 +189,8 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 9, 1, 0 }, new int[] { 0, 1, 9 })]
         public void SortByAscendingTest(int[] array, int[] expArray)
         {
-            ArrayList actual = new ArrayList(array);
-            ArrayList expected = new ArrayList(expArray);
+            LinkedList actual = new LinkedList(array);
+            LinkedList expected = new LinkedList(expArray);
             actual.SortByAscending();
             Assert.AreEqual(expected, actual);
         }
@@ -200,8 +200,8 @@ namespace DataStructures.Tests
 
         public void SortByDescendingTest(int[] array, int[] expArray)
         {
-            ArrayList actual = new ArrayList(array);
-            ArrayList expected = new ArrayList(expArray);
+            LinkedList actual = new LinkedList(array);
+            LinkedList expected = new LinkedList(expArray);
             actual.SortByDescending();
             Assert.AreEqual(expected, actual);
         }
@@ -213,8 +213,8 @@ namespace DataStructures.Tests
         //[TestCase(new int[] { 1, 2, 3 }, 5, new int[] { 1, 2, 3 })] negative
         public void RemoveValuesTest(int[] array, int value, int[] expArr)
         {
-            ArrayList actual = new ArrayList(array);
-            ArrayList expected = new ArrayList(expArr);
+            LinkedList actual = new LinkedList(array);
+            LinkedList expected = new LinkedList(expArr);
             actual.RemoveValues(value);
             Assert.AreEqual(expected, actual);
         }
@@ -224,8 +224,8 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 1, 1, 1 }, 1, new int[] { 1, 1 })]
         public void RemoveFirstValueTest(int[] array, int value, int[] expArr)
         {
-            ArrayList actual = new ArrayList(array);
-            ArrayList expected = new ArrayList(expArr);
+            LinkedList actual = new LinkedList(array);
+            LinkedList expected = new LinkedList(expArr);
             actual.RemoveFirstValue(value);
             Assert.AreEqual(expected, actual);
         }
@@ -233,8 +233,8 @@ namespace DataStructures.Tests
         [TestCase(8, new int[] {8})]
         public void ConstructTest(int value, int[] expArr)
         {
-            ArrayList actual = new ArrayList(value);
-            ArrayList expected = new ArrayList(expArr);
+            LinkedList actual = new LinkedList(value);
+            LinkedList expected = new LinkedList(expArr);
             Assert.AreEqual(expected, actual);
         }
 
@@ -244,8 +244,8 @@ namespace DataStructures.Tests
         [TestCase(new int[] { }, new int[] { }, new int[] { })]
         public void AddArrayToFirstIndexTest(int[] values, int[] array, int[] expArr)
         {
-            ArrayList actual = new ArrayList(array);
-            ArrayList expected = new ArrayList(expArr);
+            LinkedList actual = new LinkedList(array);
+            LinkedList expected = new LinkedList(expArr);
             actual.AddArrayToFirstIndex(values);
             Assert.AreEqual(expected, actual);
         }
@@ -256,8 +256,8 @@ namespace DataStructures.Tests
         [TestCase(new int[] { }, new int[] { }, new int[] { })]
         public void AddArrayToEndOfListTest(int[] values, int[] array, int[] expArr)
         {
-            ArrayList actual = new ArrayList(array);
-            ArrayList expected = new ArrayList(expArr);
+            LinkedList actual = new LinkedList(array);
+            LinkedList expected = new LinkedList(expArr);
             actual.AddArrayToEndOfList(values);
             Assert.AreEqual(expected, actual);
         }
@@ -270,8 +270,8 @@ namespace DataStructures.Tests
         //[TestCase(new int[] { }, 0, new int[] { }, new int[] { })] neg
         public void AddArrayToIndexTest(int[] values, int index, int[] array, int[] expArr)
         {
-            ArrayList actual = new ArrayList(array);
-            ArrayList expected = new ArrayList(expArr);
+            LinkedList actual = new LinkedList(array);
+            LinkedList expected = new LinkedList(expArr);
             actual.AddArrayToIndex(values, index);
             Assert.AreEqual(expected, actual);
         }

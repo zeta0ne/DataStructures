@@ -102,7 +102,6 @@ namespace DataStructures.LL
             Length++;
         }
 
-
         public void AddByIndex(int index, int value)
         {
             if (index == 0) //отдельная обработка рута
@@ -128,6 +127,66 @@ namespace DataStructures.LL
                 current.Next.Next = tmp;
             }
             Length++;
+        }
+
+        public void RemoveLastElement()
+        {
+            if (Length != 0)
+            {
+                Node current = _root; //временная переменная чтобы от начала списка бежать по нему до определённого индекса
+                for (int i = 1; i < Length; i++) //нужно прибежать на одну клетку раньше, чтобы с этой клетки удалить ссылку на последний нод
+                {
+                    current = current.Next;
+                }
+                current.Next = null;
+                Length--;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
+        public void RemoveFirstElement()
+        {
+            if (Length != 0)
+            {
+                _root = _root.Next;
+                Length--;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
+        public void RemoveElementByIndex(int index)
+        {
+            if (Length != 0)
+            {
+                if (index == 0)
+                {
+                    RemoveFirstElement();
+                }
+                else
+                {
+                    Node current = _root; //временная переменная чтобы от начала списка бежать по нему до определённого индекса
+                    for (int i = 1; i < index; i++) //нужно прибежать на одну клетку раньше, чтобы с этой клетки кинуть ссылку на новый нод
+                    {
+                        current = current.Next;
+                    }
+                   
+                    //current - ссылка на элемент перед нужным индексом, на котором остановился цикл
+                    //каррент.Некст - ссылка на теперь уже новый нод
+                    //каррент.Некст.Некст - в следующий элемент кидается ссылка на весь оставшийся список
+                    current.Next = current.Next.Next;
+                    Length--;
+                }
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
         }
 
 

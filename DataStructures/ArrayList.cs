@@ -3,14 +3,14 @@ using System.Linq;
 
 namespace DataStructures
 {
-    public class ArrayList
+    public class LinkedList
     {
         private int[] _array; //поле
         //вынести 1.33 в константу
         public int Length { get; private set; } //автоматическое свойство чтобы обращаться к полезной длине
 
 
-        public ArrayList(int[] array) //конструктор 
+        public LinkedList(int[] array) //конструктор 
             //конструктор создаёт пустой массив
         {
             _array = new int[(int)(array.Length * 1.33d)]; //умножение на 1.33 чтобы размер был больше 0
@@ -18,13 +18,13 @@ namespace DataStructures
             Array.Copy(array, _array, array.Length);
         }
 
-        public ArrayList() //конструктор 
+        public LinkedList() //конструктор 
         {
             _array = new int[3]; //изначальный массив
             Length = 0; //значение полезной длины по умолчанию при создании объекта конструктором
         }
 
-        public ArrayList(int i) //конструктор 
+        public LinkedList(int i) //конструктор 
         {
             _array = new int[1] { i }; 
             Length = 1;
@@ -361,7 +361,7 @@ namespace DataStructures
 
         public override bool Equals(object obj)
         {
-            ArrayList arrayList = (ArrayList)obj;
+            LinkedList arrayList = (LinkedList)obj;
 
             if (Length != arrayList.Length)
             {
