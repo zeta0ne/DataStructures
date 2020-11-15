@@ -244,6 +244,84 @@ namespace DataStructures.LL
             }
         }
 
+        public void Reverse()
+        {
+            Node tmp1 = _root;
+            Node tmp2 = _root;//нода в конце
+            Node tmp3 = _root.Next;//нода после первой
+            for (int i = 1; i < Length; i++) 
+            {
+                tmp2 = tmp2.Next;
+            }
+            _root = tmp2;
+            _root.Next = tmp3;
+            tmp3.Next = tmp1;
+        }
+
+        public int GetMaxValue()
+        {
+            Node tmp = _root;
+            Node val = _root;
+            for (int i = 1; i <= Length; i++)
+            {
+                if (tmp.Value > val.Value)
+                {
+                    val = tmp;
+                }
+                tmp = tmp.Next;
+            }
+            return val.Value;
+        }
+
+        public int GetMinValue()
+        {
+            Node tmp = _root;
+            Node val = _root;
+            for (int i = 1; i <= Length; i++)
+            {
+                if (tmp.Value < val.Value)
+                {
+                    val = tmp;
+                }
+                tmp = tmp.Next;
+            }
+            return val.Value;
+        }
+
+        public int GetMaxValueIndex()
+        {
+            Node tmp = _root;
+            Node val = _root;
+            int index = 0;
+            for (int i = 1; i <= Length; i++)
+            {
+                if (tmp.Value > val.Value)
+                {
+                    index = i-1;
+                    val = tmp;
+                }
+                tmp = tmp.Next;
+            }
+            return index;
+        }
+
+        public int GetMinValueIndex()
+        {
+            Node tmp = _root;
+            Node val = _root;
+            int index = 0;
+            for (int i = 1; i <= Length; i++)
+            {
+                if (tmp.Value < val.Value)
+                {
+                    index = i - 1;
+                    val = tmp;
+                }
+                tmp = tmp.Next;
+            }
+            return index;
+        }
+
         public override bool Equals(object obj)
         {
             LinkedList linkedList = (LinkedList)obj;

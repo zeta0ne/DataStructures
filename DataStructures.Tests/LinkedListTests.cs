@@ -20,7 +20,7 @@ namespace DataStructures.Tests
         }
 
         [TestCase(new int[] { 1, 2, 3 }, 4, new int[] { 4, 1, 2, 3 })]
-        [TestCase(new int[] {  }, 4, new int[] { 4 })]
+        [TestCase(new int[] { }, 4, new int[] { 4 })]
         [TestCase(new int[] { 0 }, 4, new int[] { 4, 0 })]
         public void AddToBeginnigTest(int[] array, int value, int[] expArr)
         {
@@ -32,7 +32,7 @@ namespace DataStructures.Tests
         }
 
         [TestCase(new int[] { 1, 2, 3 }, 4, new int[] { 1, 2, 3, 4 })]
-        [TestCase(new int[] {  }, 4, new int[] { 4 })]
+        [TestCase(new int[] { }, 4, new int[] { 4 })]
         public void AddToEndTest(int[] array, int value, int[] expArr)
         {
             LL.LinkedList expected = new LL.LinkedList(expArr);
@@ -82,7 +82,7 @@ namespace DataStructures.Tests
         }
 
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 5)]
-        [TestCase(new int[] {  }, 0)]
+        [TestCase(new int[] { }, 0)]
         [TestCase(new int[] { 1 }, 1)]
         public void GetLengthTest(int[] array, int expected)
         {
@@ -119,7 +119,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, 8, 4, new int[] { 1, 2, 3, 4, 8 })]
         [TestCase(new int[] { 1 }, 8, 0, new int[] { 8 })]
         //[TestCase(new int[] { }, 8, 0, new int[] { 8 })] null ref
-        public void ChangeValueByIndex(int[] array, int value, int index, int[] expArr)
+        public void ChangeValueByIndexTest(int[] array, int value, int index, int[] expArr)
         {
             LL.LinkedList expected = new LL.LinkedList(expArr);
             LL.LinkedList actual = new LL.LinkedList(array);
@@ -128,6 +128,68 @@ namespace DataStructures.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        //[TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 })]
+        //[TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 4, 3, 2, 1 })]
+        //[TestCase(new int[] { 1 }, new int[] { 1 })]
+        //[TestCase(new int[] { }, new int[] { })]
+        public void ReverseTest(int[] array, int[] expArr)
+        {
+            LL.LinkedList expected = new LL.LinkedList(expArr);
+            LL.LinkedList actual = new LL.LinkedList(array);
+            actual.Reverse();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 10, 20, -1 }, 20)]
+        [TestCase(new int[] { 0, -1 }, 0)]
+        [TestCase(new int[] { 1, 0, -1 }, 1)]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 4)]
+        //[TestCase(new int[] {  }, 0)] null ref
+        public void GetMaxValueTest(int[] array, int expected)
+        {
+            LL.LinkedList arr = new LL.LinkedList(array);
+            int actual = arr.GetMaxValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 10, 20, -1 }, -1)]
+        [TestCase(new int[] { 0, -1 }, -1)]
+        [TestCase(new int[] { 1, 0, -1 }, -1)]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 1)]
+        public void GetMinValueTest(int[] array, int expected)
+        {
+            LL.LinkedList arr = new LL.LinkedList(array);
+            int actual = arr.GetMinValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 10, 20, -1 }, 1)]
+        [TestCase(new int[] { 0, -1 }, 0)]
+        [TestCase(new int[] { 1, 0, -1 }, 0)]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 3)]
+        [TestCase(new int[] { 100, 2, -1, 200 }, 3)]
+        [TestCase(new int[] { 100, 2, -1, 20 }, 0)]
+        //[TestCase(new int[] {  }, 0)] null ref
+        public void GetMaxValueIndexTest(int[] array, int expected)
+        {
+            LL.LinkedList arr = new LL.LinkedList(array);
+            int actual = arr.GetMaxValueIndex();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 10, 20, -1 }, 2)]
+        [TestCase(new int[] { 0, -1 }, 1)]
+        [TestCase(new int[] { 1, 0, -1 }, 2)]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 0)]
+        [TestCase(new int[] { 100, 2, -1, 200 }, 2)]
+        [TestCase(new int[] { 100, 2, -1, 20 }, 2)]
+        //[TestCase(new int[] {  }, 0)] null ref
+        public void GetMinValueIndexTest(int[] array, int expected)
+        {
+            LL.LinkedList arr = new LL.LinkedList(array);
+            int actual = arr.GetMinValueIndex();
+            Assert.AreEqual(expected, actual);
+        }
 
     }
 }
