@@ -20,6 +20,11 @@ namespace DataStructures.LL
         {
             Next = null; //это значит "следующий элемент пока никакой"
         }
-                                       
+
+        public override string ToString()
+        {
+            return $"{Value}";
+        }
+
     }
 }

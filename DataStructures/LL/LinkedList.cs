@@ -246,16 +246,18 @@ namespace DataStructures.LL
 
         public void Reverse()
         {
-            Node tmp1 = _root;
-            Node tmp2 = _root;//нода в конце
-            Node tmp3 = _root.Next;//нода после первой
-            for (int i = 1; i < Length; i++) 
+            //1 2 3 4 5
+            Node current = _root;
+            Node prev = null;
+            Node next;
+            while(current != null)
             {
-                tmp2 = tmp2.Next;
+                next = current.Next;
+                current.Next = prev;
+                prev = current;
+                current = next;
             }
-            _root = tmp2;
-            _root.Next = tmp3;
-            tmp3.Next = tmp1;
+            _root = prev;           
         }
 
         public int GetMaxValue()
@@ -324,7 +326,24 @@ namespace DataStructures.LL
 
         public void SortByAscending()
         {
-
+            Node current = _root;
+            Node val = _root;
+            Node tmp;
+            for (int i = 1; i < Length; i++)
+            {
+                for (int j = 1; j < i; j++)
+                {
+                    if (current.Value < val.Value)
+                    {
+                        //swap
+                        tmp = current.Next;
+                        current.Next = val;
+                        val.Next = tmp;
+                    }
+                     current = current.Next;
+                }
+                val = val.Next;
+            }
         }
 
         public override bool Equals(object obj)
