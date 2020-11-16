@@ -191,5 +191,17 @@ namespace DataStructures.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { 5, 2, 9, 0 }, new int[] { 0, 2, 5, 9 })]
+        [TestCase(new int[] { 1, 1, 1 }, new int[] { 1, 1, 1 })]
+        [TestCase(new int[] { 1, -91, 0 }, new int[] { -91, 0, 1 })]
+        [TestCase(new int[] { 5, -91, 10 }, new int[] { -91, 5, 10 })]
+        [TestCase(new int[] { 5, 20, 10, 1 }, new int[] { 1, 5, 10, 20 })]
+        public void SortByAscendingTest(int[] array, int[] expArr)
+        {
+            LL.LinkedList expected = new LL.LinkedList(expArr);
+            LL.LinkedList actual = new LL.LinkedList(array);
+            actual.SortByAscending();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

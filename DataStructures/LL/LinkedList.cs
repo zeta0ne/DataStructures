@@ -220,7 +220,7 @@ namespace DataStructures.LL
                 {
                     Node tmp = _root; //сохраняем рут во временную переменную чтобы не потерять
                     _root = new Node(value); //новый рут
-                    _root.Next = tmp.Next; //новый рут теперь ссылается на второй элемент списка, сохранённого в тмп
+                    _root.Next = tmp.Next; //новый рут теперь ссылается на второй элемент старого списка, сохранённого в тмп
                 }
                 else
                 {
@@ -320,6 +320,11 @@ namespace DataStructures.LL
                 tmp = tmp.Next;
             }
             return index;
+        }
+
+        public void SortByAscending()
+        {
+
         }
 
         public override bool Equals(object obj)
