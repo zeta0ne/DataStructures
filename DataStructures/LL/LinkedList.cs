@@ -175,7 +175,6 @@ namespace DataStructures.LL
                     {
                         current = current.Next;
                     }
-                   
                     //current - ссылка на элемент перед нужным индексом, на котором остановился цикл
                     //каррент.Некст - ссылка на теперь уже новый нод
                     //каррент.Некст.Некст - в следующий элемент кидается ссылка на весь оставшийся список
@@ -326,25 +325,125 @@ namespace DataStructures.LL
 
         public void SortByAscending()
         {
-            Node current = _root;
-            Node val = _root;
-            Node tmp;
-            for (int i = 1; i < Length; i++)
+
+
+            //Node current = _root;
+            //Node val = _root;
+            //Node tmp;
+            //Node sorted = null;
+            //while (val.Next != null)
+            //{
+            //    while (current.Next != null)
+            //    {
+            //        if (current.Value > val.Value)
+            //        {
+            //            //swap
+            //            tmp = current.Next;
+            //            sorted = current;
+                        
+            //            sorted.Next = val;
+            //            sorted.Next.Next = tmp;
+                       
+                        
+            //        }
+            //        current = current.Next;
+                   
+            //    }
+                
+            //    //if (i == Length)
+            //    //{
+            //    //    val.Next = null;
+            //    //}
+            //    //else
+            //    //{
+            //        val = val.Next;
+            //    //}
+            //}
+            //_root = sorted;
+        }
+
+        public void AddArrayToEnd(int[] array)
+        {
+            LinkedList newArr = new LinkedList(array);
+            if (Length != 0)
             {
-                for (int j = 1; j < i; j++)
+                Node tmp = _root;
+                while(tmp.Next != null)
                 {
-                    if (current.Value < val.Value)
-                    {
-                        //swap
-                        tmp = current.Next;
-                        current.Next = val;
-                        val.Next = tmp;
-                    }
-                     current = current.Next;
+                    tmp = tmp.Next;
                 }
-                val = val.Next;
+                tmp.Next = newArr._root;
+            }
+            else
+            {
+                _root = newArr._root;
+            }
+            Length += newArr.Length;
+        }
+
+        public void AddArrayToBeginning(int[] array)
+        {
+            LinkedList newArr = new LinkedList(array);
+            if (Length != 0)
+            {
+                if (newArr.Length != 0)
+                {
+                    Node tmp = newArr._root;
+                    while (tmp.Next != null)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    tmp.Next = _root;
+                    _root = newArr._root;
+                }
+            }
+            else
+            {
+                _root = newArr._root;
+            }
+            Length += newArr.Length;
+        }
+
+        public void AddArrayToIndex(int[] array, int index)
+        {
+            LinkedList newArr = new LinkedList(array);
+            int counter = 0;
+            if (Length != 0)
+            {
+                if (newArr.Length != 0)
+                {
+                    if (index == 0)
+                    {
+                        AddArrayToBeginning(array);
+                    }
+                    else
+                    {
+                        Node tmp = _root;
+                        while (counter != index - 1)
+                        {
+                            tmp = tmp.Next;
+                            counter++;
+                        }
+                        Node tmp2 = tmp.Next;
+                        tmp.Next = newArr._root;
+                        Node tmp3 = newArr._root;
+                        while (tmp3.Next != null)
+                        {
+                            tmp3 = tmp3.Next;
+                        }
+                        tmp3.Next = tmp2;
+                        Length += newArr.Length;
+                    }
+                }
+            }
+            else
+            {
+                _root = newArr._root;
+                Length += newArr.Length;
             }
         }
+
+
 
         public override bool Equals(object obj)
         {

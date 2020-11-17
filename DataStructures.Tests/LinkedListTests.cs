@@ -203,5 +203,45 @@ namespace DataStructures.Tests
             actual.SortByAscending();
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { 6, 8, 4 }, new int[] { 1, 2, 3 }, new int[] { 6, 8, 4, 1, 2, 3})]
+        [TestCase(new int[] {  }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3})]
+        [TestCase(new int[] {  }, new int[] { 0 }, new int[] { 0 })]
+        [TestCase(new int[] { 0, 0, 0 }, new int[] { 0 }, new int[] { 0, 0, 0, 0 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] {  }, new int[] { 1, 2, 3 })]
+        public void AddArrayToEndTest(int[] array, int[] add, int[] expArr)
+        {
+            LL.LinkedList expected = new LL.LinkedList(expArr);
+            LL.LinkedList actual = new LL.LinkedList(array);
+            actual.AddArrayToEnd(add);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 6, 8, 4 }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3, 6, 8, 4 })]
+        [TestCase(new int[] {  }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] {  }, new int[] { 0 }, new int[] { 0 })]
+        [TestCase(new int[] { 0, 0, 0 }, new int[] { 0 }, new int[] { 0, 0, 0, 0 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { }, new int[] { 1, 2, 3 })]
+        public void AddArrayToBeginningTest(int[] array, int[] add, int[] expArr)
+        {
+            LL.LinkedList expected = new LL.LinkedList(expArr);
+            LL.LinkedList actual = new LL.LinkedList(array);
+            actual.AddArrayToBeginning(add);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 6, 8, 4 }, new int[] { 1, 2, 3 }, 0, new int[] { 1, 2, 3, 6, 8, 4 })]
+        [TestCase(new int[] { 6, 8, 4 }, new int[] { 1, 2, 3 }, 2, new int[] { 6, 8, 1, 2, 3, 4 })]
+        [TestCase(new int[] { }, new int[] { 1, 2, 3 }, 0, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] { }, new int[] { 0 }, 0, new int[] { 0 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { }, 1, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 6 }, 2, new int[] { 1, 2, 6, 3 })]
+        public void AddArrayToIndexTest(int[] array, int[] add, int index, int[] expArr)
+        {
+            LL.LinkedList expected = new LL.LinkedList(expArr);
+            LL.LinkedList actual = new LL.LinkedList(array);
+            actual.AddArrayToIndex(add, index);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
