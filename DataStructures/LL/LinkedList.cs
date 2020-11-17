@@ -443,7 +443,59 @@ namespace DataStructures.LL
             }
         }
 
+        public void RemoveNElementsFromEnd(int n)
+        {
+            Node tmp = _root;
+            for (int i = 0; i < Length - n - 1; i++)
+            {
+                tmp = tmp.Next;
+            }
+            tmp.Next = null;
+            Length -= n;
+        }
 
+        public void RemoveNElementsFromBeginning(int n)
+        {
+            Node tmp = _root;
+            if (Length != n)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    tmp = tmp.Next;
+                }
+                _root = tmp;
+                Length -= n;
+            }
+            else
+            {
+                _root = null;
+                Length = 0;
+            }
+        }
+
+        public void RemoveNElementsFromIndex(int n, int index)
+        {
+            if (index != 0)
+            {
+                Node tmp = _root;
+                for (int i = 1; i < index; i++)
+                {
+                    tmp = tmp.Next;
+                }
+                Node tmp2 = tmp.Next;
+                for (int i = 0; i < n; i++)
+                {
+                    tmp2 = tmp2.Next;
+                }
+                tmp.Next = tmp2;
+                Length -= n;
+            }
+            else
+            {
+                RemoveNElementsFromBeginning(n);
+            }
+
+        }
 
         public override bool Equals(object obj)
         {
