@@ -325,7 +325,33 @@ namespace DataStructures.LL
 
         public void SortByAscending()
         {
-
+            if (Length != 0)
+            {
+                Node tmp1 = _root;
+                Node tmp2 = _root.Next;
+                for (int i = 0; i < Length; i++)
+                {
+                    while(tmp2 != null)
+                    {
+                        int count = 0;
+                        if(tmp1.Value > tmp2.Value)
+                        {
+                            tmp1.Next = tmp1.Next.Next;
+                            AddByIndex(count, tmp2.Value);
+                            Length--;
+                            tmp2 = tmp1.Next;
+                        }
+                        else
+                        {
+                            tmp1 = tmp1.Next;
+                            tmp2 = tmp1.Next;
+                        }
+                        count++;
+                    }
+                    tmp1 = _root;
+                    tmp2 = _root.Next;
+                }
+            }
 
             //Node current = _root;
             //Node val = _root;
@@ -362,6 +388,37 @@ namespace DataStructures.LL
             //_root = sorted;
         }
 
+        public void SortByDescending()
+        {
+            if (Length != 0)
+            {
+                Node tmp1 = _root;
+                Node tmp2 = _root.Next;
+                for (int i = 0; i < Length; i++)
+                {
+                    while (tmp2 != null)
+                    {
+                        int count = 0;
+                        if (tmp1.Value < tmp2.Value)
+                        {
+                            tmp1.Next = tmp1.Next.Next;
+                            AddByIndex(count, tmp2.Value);
+                            Length--;
+                            tmp2 = tmp1.Next;
+                        }
+                        else
+                        {
+                            tmp1 = tmp1.Next;
+                            tmp2 = tmp1.Next;
+                        }
+                        count++;
+                    }
+                    tmp1 = _root;
+                    tmp2 = _root.Next;
+                }
+            }
+        }
+
         public void RemoveFirstValue(int value)
         {
             Node tmp = _root;
@@ -382,18 +439,21 @@ namespace DataStructures.LL
 
         public void RemoveAllValues(int value)
         {
+            while (_root!= null && _root.Value == value)
+            {
+                RemoveFirstElement();
+            }
             Node tmp = _root;
-            while (tmp.Next != null)
+            while (tmp != null && tmp.Next != null)
             {
                 if (tmp.Next.Value == value)
                 {
-                    tmp = tmp.Next;
+                    tmp.Next = tmp.Next.Next;
                     Length--;
                 }
                 tmp = tmp.Next;
             }
         }
-
 
         public void AddArrayToEnd(int[] array)
         {

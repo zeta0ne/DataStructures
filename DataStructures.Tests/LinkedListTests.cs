@@ -196,11 +196,28 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 1, -91, 0 }, new int[] { -91, 0, 1 })]
         [TestCase(new int[] { 5, -91, 10 }, new int[] { -91, 5, 10 })]
         [TestCase(new int[] { 5, 20, 10, 1 }, new int[] { 1, 5, 10, 20 })]
+        [TestCase(new int[] { 5 }, new int[] { 5 })]
+        [TestCase(new int[] { }, new int[] { })]
         public void SortByAscendingTest(int[] array, int[] expArr)
         {
             LL.LinkedList expected = new LL.LinkedList(expArr);
             LL.LinkedList actual = new LL.LinkedList(array);
             actual.SortByAscending();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 5, 2, 9, 0 }, new int[] { 9, 5, 2, 0 })]
+        [TestCase(new int[] { 1, 1, 1 }, new int[] { 1, 1, 1 })]
+        [TestCase(new int[] { 1, -91, 0 }, new int[] { 1, 0, -91 })]
+        [TestCase(new int[] { 5, -91, 10 }, new int[] { 10, 5, -91 })]
+        [TestCase(new int[] { 5, 20, 10, 1 }, new int[] { 20, 10, 5, 1 })]
+        [TestCase(new int[] { 5 }, new int[] { 5 })]
+        [TestCase(new int[] { }, new int[] { })]
+        public void SortByDescendingTest(int[] array, int[] expArr)
+        {
+            LL.LinkedList expected = new LL.LinkedList(expArr);
+            LL.LinkedList actual = new LL.LinkedList(array);
+            actual.SortByDescending();
             Assert.AreEqual(expected, actual);
         }
 
@@ -219,6 +236,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 1, 2, 4, 1, 7, 1, 5, 3, 1 }, 1, new int[] { 2, 4, 7, 5, 3 })]
         [TestCase(new int[] { 1 }, 1, new int[] { })]
         [TestCase(new int[] { 2, 1 }, 1, new int[] { 2 })]
+        [TestCase(new int[] { 1, 2, 1 }, 1, new int[] { 2 })]
         public void RemoveAllValuesTest(int[] array, int value, int[] expArr)
         {
             LL.LinkedList expected = new LL.LinkedList(expArr);
@@ -230,6 +248,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 6, 8, 4 }, new int[] { 1, 2, 3 }, new int[] { 6, 8, 4, 1, 2, 3 })]
         [TestCase(new int[] { }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
         [TestCase(new int[] { }, new int[] { 0 }, new int[] { 0 })]
+        [TestCase(new int[] { 1 }, new int[] { 0 }, new int[] { 1, 0 })]
         [TestCase(new int[] { 0, 0, 0 }, new int[] { 0 }, new int[] { 0, 0, 0, 0 })]
         [TestCase(new int[] { 1, 2, 3 }, new int[] { }, new int[] { 1, 2, 3 })]
         public void AddArrayToEndTest(int[] array, int[] add, int[] expArr)
