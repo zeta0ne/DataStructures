@@ -204,6 +204,29 @@ namespace DataStructures.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] { 2, 4, 1, 7, 1, 5, 3, 1 }, 1, new int[] { 2, 4, 7, 1, 5, 3, 1 })]
+        [TestCase(new int[] { 1, 2, 4, 1, 7, 1, 5, 3, 1 }, 1, new int[] { 2, 4, 1, 7, 1, 5, 3, 1 })]
+        [TestCase(new int[] { 1 }, 1, new int[] {  })]
+        public void RemoveFirstValueTest(int[] array, int value, int[] expArr)
+        {
+            LL.LinkedList expected = new LL.LinkedList(expArr);
+            LL.LinkedList actual = new LL.LinkedList(array);
+            actual.RemoveFirstValue(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 2, 4, 1, 7, 1, 5, 3, 1 }, 1, new int[] { 2, 4, 7, 5, 3 })]
+        [TestCase(new int[] { 1, 2, 4, 1, 7, 1, 5, 3, 1 }, 1, new int[] { 2, 4, 7, 5, 3 })]
+        [TestCase(new int[] { 1 }, 1, new int[] { })]
+        [TestCase(new int[] { 2, 1 }, 1, new int[] { 2 })]
+        public void RemoveAllValuesTest(int[] array, int value, int[] expArr)
+        {
+            LL.LinkedList expected = new LL.LinkedList(expArr);
+            LL.LinkedList actual = new LL.LinkedList(array);
+            actual.RemoveAllValues(value);
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestCase(new int[] { 6, 8, 4 }, new int[] { 1, 2, 3 }, new int[] { 6, 8, 4, 1, 2, 3 })]
         [TestCase(new int[] { }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
         [TestCase(new int[] { }, new int[] { 0 }, new int[] { 0 })]

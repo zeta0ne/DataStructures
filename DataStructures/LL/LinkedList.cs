@@ -362,6 +362,39 @@ namespace DataStructures.LL
             //_root = sorted;
         }
 
+        public void RemoveFirstValue(int value)
+        {
+            Node tmp = _root;
+            if (_root.Value == value)
+            {
+                RemoveFirstElement();
+            }
+            else
+            {
+                while (tmp.Next.Value != value)
+                {
+                    tmp = tmp.Next;
+                }
+                tmp.Next = tmp.Next.Next;
+                Length--;
+            }
+        }
+
+        public void RemoveAllValues(int value)
+        {
+            Node tmp = _root;
+            while (tmp.Next != null)
+            {
+                if (tmp.Next.Value == value)
+                {
+                    tmp = tmp.Next;
+                    Length--;
+                }
+                tmp = tmp.Next;
+            }
+        }
+
+
         public void AddArrayToEnd(int[] array)
         {
             LinkedList newArr = new LinkedList(array);
