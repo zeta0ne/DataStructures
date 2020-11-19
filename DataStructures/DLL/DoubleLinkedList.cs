@@ -21,7 +21,7 @@ namespace DataStructures.DLL
                 if (index > Length/2 + 1)
                 {
                     Node tmp = _tail;
-                    for (int i = Length; i > index+1; i--) 
+                    for (int i = Length; i > index + 1; i--) 
                     {
                         tmp = tmp.Prev;
                     }
@@ -111,7 +111,7 @@ namespace DataStructures.DLL
 
         public void AddToEnd(int value)
         {
-            if (Length == 0) //отдельная обработка пустого списка
+            if (Length == 0) 
             {
                 _root = new Node(value);
                 _tail = _root;
@@ -126,7 +126,55 @@ namespace DataStructures.DLL
             Length++;
         }
 
+        public void AddToBeginning(int value)
+        {
+            if (Length == 0) //отдельная обработка пустого списка
+            {
+                _root = new Node(value);
+                _tail = _root;
+            }
+            else
+            {
+                Node tmp = _root; 
+                _root = new Node(value); 
+                _root.Next = tmp;
+                tmp.Prev = _root;
+            }
+            Length++;
+        }
 
+        public void AddByIndex(int value, int index)
+        {
+            if (Length == 0) //отдельная обработка пустого списка
+            {
+                _root = new Node(value);
+                _tail = _root;
+                Length++;
+            }
+            else
+            {
+                if (index == 0)
+                {
+                    AddToBeginning(value);
+                }
+                else
+                {
+                    Node val = new Node(value);
+                    Node cur = _root;
+                    for (int i = 1; i < index; i++) //дойти до значения перед нужным индексом
+                    {
+                        cur = cur.Next;
+                    }
+                    Node tmp = cur.Next;
+                    cur.Next = val;
+                    val.Prev = cur;
+                    val.Next = tmp;
+                    tmp.Prev = val;
+                    Length++;
+                }
+            }
+            
+        }
 
         public override bool Equals(object obj)
         {

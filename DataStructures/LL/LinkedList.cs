@@ -96,9 +96,16 @@ namespace DataStructures.LL
 
         public void AddToBeginning(int value)
         {
-            Node tmp = _root; //сохраняем рут во временную переменную чтобы не потерять
-            _root = new Node(value); //новый рут
-            _root.Next = tmp; //новый рут теперь ссылается на старый
+            if (Length == 0) //отдельная обработка пустого списка
+            {
+                _root = new Node(value);
+            }
+            else
+            {
+                Node tmp = _root; //сохраняем рут во временную переменную чтобы не потерять
+                _root = new Node(value); //новый рут
+                _root.Next = tmp; //новый рут теперь ссылается на старый             
+            }
             Length++;
         }
 
