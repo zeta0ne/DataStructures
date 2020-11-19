@@ -143,6 +143,8 @@ namespace DataStructures.DLL
             Length++;
         }
 
+        //сделать метод который выдаёт ноду по нужному индексу, в котором условия 
+        //как в индексаторе чтобы или бежать сначала, или с конца
         public void AddByIndex(int value, int index)
         {
             if (Length == 0) //отдельная обработка пустого списка
@@ -173,8 +175,26 @@ namespace DataStructures.DLL
                     Length++;
                 }
             }
-            
         }
+
+        public void RemoveFromBeginning()
+        {
+            if (Length != 0)
+            {
+                if (_root.Next != null)
+                {
+                    _root.Next.Prev = null;
+                }
+                _root = _root.Next;
+                Length--;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
+
 
         public override bool Equals(object obj)
         {

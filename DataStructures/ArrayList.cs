@@ -13,7 +13,7 @@ namespace DataStructures
         public LinkedList(int[] array) //конструктор 
             //конструктор создаёт пустой массив
         {
-            _array = new int[(int)(array.Length * 1.33d)]; //умножение на 1.33 чтобы размер был больше 0
+            _array = new int[(int)(array.Length * 1.33d )]; //умножение на 1.33 чтобы размер был больше 0
             Length = array.Length;
             Array.Copy(array, _array, array.Length);
         }
@@ -64,8 +64,6 @@ namespace DataStructures
             }
             _array[Length] = value;
             Length++;
-
-
         }
 
         public void AddToFirst(int value)
@@ -100,7 +98,6 @@ namespace DataStructures
             }
             Length++;
             _array[index] = value;
-
         }
 
         public void RemoveFirst()
@@ -112,7 +109,7 @@ namespace DataStructures
             RemoveIndex(Length);
         }
 
-        //make private?
+       
         public void RemoveIndex(int index)
         {
             
@@ -263,32 +260,53 @@ namespace DataStructures
 
         public void RemoveValues(int value)
         {
-            int q = 0;
-            for (int i = 0; i < Length; i++)
+            for (int i = Length - 1; i >= 0; i--)
             {
-                if (_array[i] == value)
+                if (_array[i] == value )
                 {
-                //    q++;
-                    RemoveIndex(i);
-
-                //}
-                //else
-                //{
-                //    _array[i - q] = _array[i];
-                //    Length--;
-                //    q = 0;
+                    _array[i] = _array[i - 1];
                 }
             }
+
+            //if (Length == _array.Length)
+            //{
+            //    IncreaseLength();
+            //}
+
+            //int counter = 0;
+            //while (counter < Length )
+            //{
+            //    while (_array[counter] == value)
+            //    {
+            //        RemoveIndex(counter);
+            //    }
+            //    counter++;
+            //}
+            //int counter = 0;
+            //for (int i = 0; i < Length; i++)
+            //{
+            //    if (_array[i] == value)
+            //    {
+            //        _array[i] = _array[i + 1];
+            //        _array[_array.Length - 1] = 0;
+            //        i--;
+
+            //    }
+            //}
         }
 
         public void RemoveFirstValue(int value)
         {
+            if (Length == _array.Length)
+            {
+                IncreaseLength();
+            }
             for (int i = 0; i < Length; i++)
             {
                 if (_array[i] == value)
                 {
-                    //RemoveIndex(i);
-                    //return;               
+                    RemoveIndex(i);
+                    return;               
                 }
             }
         }

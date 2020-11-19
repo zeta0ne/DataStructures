@@ -59,5 +59,16 @@ namespace DataStructures.Tests
             actual.AddByIndex(value, index);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 2, 3, 4 })]
+        [TestCase(new int[] { 0, 0, 0 }, new int[] { 0, 0 })]
+        [TestCase(new int[] { 1 }, new int[] { })]
+        public void RemoveFromBeginning(int[] array, int[] expArr)
+        {
+            DLL.DoubleLinkedList expected = new DLL.DoubleLinkedList(expArr);
+            DLL.DoubleLinkedList actual = new DLL.DoubleLinkedList(array);
+            actual.RemoveFromBeginning();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

@@ -237,6 +237,7 @@ namespace DataStructures.Tests
         [TestCase(new int[] { 1 }, 1, new int[] { })]
         [TestCase(new int[] { 2, 1 }, 1, new int[] { 2 })]
         [TestCase(new int[] { 1, 2, 1 }, 1, new int[] { 2 })]
+        [TestCase(new int[] { 1, 1, 1, 1 }, 1, new int[] { })]
         public void RemoveAllValuesTest(int[] array, int value, int[] expArr)
         {
             LL.LinkedList expected = new LL.LinkedList(expArr);
