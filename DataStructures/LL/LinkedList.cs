@@ -331,9 +331,10 @@ namespace DataStructures.LL
                 Node tmp2 = _root.Next;
                 for (int i = 0; i < Length; i++)
                 {
-                    while(tmp2 != null)
+                    int count = 0;
+                    while (tmp2 != null)
                     {
-                        int count = 0;
+                        
                         if(tmp1.Value > tmp2.Value)
                         {
                             tmp1.Next = tmp1.Next.Next;
@@ -352,40 +353,6 @@ namespace DataStructures.LL
                     tmp2 = _root.Next;
                 }
             }
-
-            //Node current = _root;
-            //Node val = _root;
-            //Node tmp;
-            //Node sorted = null;
-            //while (val.Next != null)
-            //{
-            //    while (current.Next != null)
-            //    {
-            //        if (current.Value > val.Value)
-            //        {
-            //            //swap
-            //            tmp = current.Next;
-            //            sorted = current;
-                        
-            //            sorted.Next = val;
-            //            sorted.Next.Next = tmp;
-                       
-                        
-            //        }
-            //        current = current.Next;
-                   
-            //    }
-                
-            //    //if (i == Length)
-            //    //{
-            //    //    val.Next = null;
-            //    //}
-            //    //else
-            //    //{
-            //        val = val.Next;
-            //    //}
-            //}
-            //_root = sorted;
         }
 
         public void SortByDescending()
@@ -396,9 +363,9 @@ namespace DataStructures.LL
                 Node tmp2 = _root.Next;
                 for (int i = 0; i < Length; i++)
                 {
+                    int count = 0;
                     while (tmp2 != null)
                     {
-                        int count = 0;
                         if (tmp1.Value < tmp2.Value)
                         {
                             tmp1.Next = tmp1.Next.Next;

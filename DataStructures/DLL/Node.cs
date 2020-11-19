@@ -9,17 +9,19 @@ namespace DataStructures.DLL
         public int Value { get; set; } //значение ноды
         public Node Next { get; set; } //переменная типа Node для хранения ссылки на след ноду
                                        //в переменной класса хранится ссылка на объект, а не сам объект
-        public Node Previous { get; set; }
+        public Node Prev { get; set; }
 
         //конструкторы:
         public Node(int value)
         {
             Value = value;
-            Next = null; //это значит "следующий элемент пока никакой"
+            Next = null;  //это значит "следующий элемент пока никакой"
+            Prev = null;
         }
         public Node()
         {
             Next = null; //это значит "следующий элемент пока никакой"
+            Prev = null;
         }
 
     }
