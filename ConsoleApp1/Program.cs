@@ -7,10 +7,15 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            ArrayList linkL = new ArrayList(new int[] { 33, 1, 2 });
-            int first = linkL[0];
-            Console.WriteLine(first);
+            ArrayList AA = new ArrayList(new int[0]);
 
+            for (int i = 0; i < 300; i++)
+            {
+                AA.AddToEnd(4);
+            }
+            AA.RemoveNElementsFromBeginning(50);
+            Console.Write(AA.Length);
+           
         }
     }
 }

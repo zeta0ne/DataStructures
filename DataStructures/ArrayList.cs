@@ -349,6 +349,43 @@ namespace DataStructures
             Length += values.Length;
         }
 
+        public void RemoveNElementsFromEnd(int amount)
+        {
+            for (int i = Length-1; i >= Length - amount; i--)
+            {
+                _array[i] = 0;
+            }
+            Length -= amount;
+        }
+
+        public void RemoveNElementsFromBeginning(int amount)
+        {
+            if (amount > _array.Length - Length)
+            {
+                IncreaseLength(amount);
+            }
+            for (int i = 0; i < Length; i++)
+            {
+                _array[i] = _array[amount + i];
+            }
+            Length -= amount;
+            if (Length <= _array.Length / 2 - 1)
+            {
+                DecreaseLength();
+            }
+        }
+
+        private void DecreaseLength()
+        {
+            int newLength = _array.Length;
+            while (newLength >= _array.Length/2 - 1)
+            {
+                newLength = (int)(newLength * 0.66 + 1);
+            }
+            int[] newArray = new int[newLength];
+            Array.Copy(_array, newArray, newLength);
+            _array = newArray;
+        }
 
 
         private void IncreaseLength(int number = 1)

@@ -237,7 +237,7 @@ namespace DataStructures.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(8, new int[] {8})]
+        [TestCase(8, new int[] { 8 })]
         public void ConstructTest(int value, int[] expArr)
         {
             ArrayList actual = new ArrayList(value);
@@ -257,8 +257,8 @@ namespace DataStructures.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 1, 1 }, new int[] {  1, 1, 1, 1, 2, 3 })]
-        [TestCase(new int[] { 0, 0, 0 }, new int[] { 1, 2, 3 }, new int[] {  1, 2, 3, 0, 0, 0 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 1, 1 }, new int[] { 1, 1, 1, 1, 2, 3 })]
+        [TestCase(new int[] { 0, 0, 0 }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3, 0, 0, 0 })]
         [TestCase(new int[] { }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
         [TestCase(new int[] { }, new int[] { }, new int[] { })]
         public void AddArrayToEndOfListTest(int[] values, int[] array, int[] expArr)
@@ -273,7 +273,7 @@ namespace DataStructures.Tests
         //[TestCase(new int[] { 0, 0, 0 }, 3, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3, 0, 0, 0 })] indexoutofb
         [TestCase(new int[] { }, 0, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
         [TestCase(new int[] { 6, 7, 8 }, 0, new int[] { 1, 2, 3 }, new int[] { 6, 7, 8, 1, 2, 3 })]
-        [TestCase(new int[] { 6}, 0, new int[] { 1, 2, 3 }, new int[] { 6, 1, 2, 3 })]
+        [TestCase(new int[] { 6 }, 0, new int[] { 1, 2, 3 }, new int[] { 6, 1, 2, 3 })]
         //[TestCase(new int[] { }, 0, new int[] { }, new int[] { })] neg
         public void AddArrayToIndexTest(int[] values, int index, int[] array, int[] expArr)
         {
@@ -282,5 +282,27 @@ namespace DataStructures.Tests
             actual.AddArrayToIndex(values, index);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 3, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] { 0, 0, 0 }, 1, new int[] { 0, 0 })]
+        [TestCase(new int[] { 1 }, 1, new int[] { })]
+        [TestCase(new int[] { 1 }, 0, new int[] { 1 })]
+        public void RemoveNElementsFromEndTest(int[] array, int amount, int[] expArr)
+        {
+            ArrayList actual = new ArrayList(array);
+            ArrayList expected = new ArrayList(expArr);
+            actual.RemoveNElementsFromEnd(amount);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, 3, new int[] { 4, 5, 6 })]
+        public void RemoveNElementsFromBeginningTest(int[] array, int amount, int[] expArr)
+        {
+            ArrayList actual = new ArrayList(array);
+            ArrayList expected = new ArrayList(expArr);
+            actual.RemoveNElementsFromBeginning(amount);
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
