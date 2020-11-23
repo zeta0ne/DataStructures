@@ -369,24 +369,23 @@ namespace DataStructures
                 _array[i] = _array[amount + i];
             }
             Length -= amount;
-            if (Length <= _array.Length / 2 - 1)
-            {
-                DecreaseLength();
-            }
+            DecreaseLength();
         }
-
+        
         private void DecreaseLength()
         {
-            int newLength = _array.Length;
-            while (newLength >= _array.Length/2 - 1)
+            if (Length <= _array.Length / 2 - 1)
             {
-                newLength = (int)(newLength * 0.66 + 1);
+                int newLength = _array.Length;
+                while (newLength >= _array.Length / 2 - 1)
+                {
+                    newLength = (int)(newLength * 0.66 + 1);
+                }
+                int[] newArray = new int[newLength];
+                Array.Copy(_array, newArray, newLength);
+                _array = newArray;
             }
-            int[] newArray = new int[newLength];
-            Array.Copy(_array, newArray, newLength);
-            _array = newArray;
         }
-
 
         private void IncreaseLength(int number = 1)
         {
@@ -399,8 +398,6 @@ namespace DataStructures
             Array.Copy(_array, newArray, _array.Length);
             _array = newArray; //новый массив приравнялся к старому, метод поменял поле
         }
-
-
 
         public override bool Equals(object obj)
         {
