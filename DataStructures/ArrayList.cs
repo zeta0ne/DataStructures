@@ -9,7 +9,6 @@ namespace DataStructures
         //вынести 1.33 в константу
         public int Length { get; private set; } //автоматическое свойство чтобы обращаться к полезной длине
 
-
         public ArrayList(int[] array) //конструктор 
             //конструктор создаёт пустой массив
         {
@@ -68,7 +67,6 @@ namespace DataStructures
 
         public void AddToFirst(int value)
         {
-
             if (Length <= _array.Length)
             {
                 IncreaseLength();
@@ -91,7 +89,7 @@ namespace DataStructures
             }
             if (Length != 0)
             {
-                for (int i = Length; i >= Length - index; i--)
+                for (int i = Length; i > index; i--)
                 {
                     _array[i] = _array[i - 1];
                 }
@@ -106,12 +104,18 @@ namespace DataStructures
         }
         public void RemoveLast()
         {
-            RemoveIndex(Length);
+            if (Length > 0)
+            {
+                RemoveIndex(Length);
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
         }
 
         public void RemoveIndex(int index)
         {
-            
             if (Length > 1)
             {
                 for (int i = index; i < Length; i++)
@@ -212,15 +216,22 @@ namespace DataStructures
 
         public int GetMinValueIndex()
         {
-            int minValIn = _array[0];
-            for (int i = 0; i < Length; i++)
+            if (Length > 0)
             {
-                if (_array[i] < minValIn)
+                int minValIn = _array[0];
+                for (int i = 0; i < Length; i++)
                 {
-                    minValIn = i;
+                    if (_array[i] < minValIn)
+                    {
+                        minValIn = i;
+                    }
                 }
+                return minValIn;
             }
-            return minValIn;
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
         }
 
         public void SortByAscending()
@@ -371,10 +382,24 @@ namespace DataStructures
             Length -= amount;
             DecreaseLength();
         }
-        
+
+        public void RemoveNElementsFromIndex(int amount, int index)
+        {
+            if (amount > _array.Length - Length)
+            {
+                IncreaseLength(amount);
+            }
+            for (int i = index; i < Length; i++)
+            {
+                _array[i] = _array[amount + i];
+            }
+            Length -= amount;
+            DecreaseLength();
+        }
+
         private void DecreaseLength()
         {
-            if (Length <= _array.Length / 2 - 1)
+            if (Length <= _array.Length / 2 - 1 && _array.Length > 3)
             {
                 int newLength = _array.Length;
                 while (newLength >= _array.Length / 2 - 1)
