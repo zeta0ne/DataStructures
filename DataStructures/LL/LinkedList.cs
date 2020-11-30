@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataStructures.LL
 {
-    public class LinkedList
+    public class LinkedList : ILists
     {
         public int Length { get; set; }
         
@@ -94,7 +94,7 @@ namespace DataStructures.LL
             Length++;
         }
 
-        public void AddToBeginning(int value)
+        public void AddToFirst(int value)
         {
             if (Length == 0) //отдельная обработка пустого списка
             {
@@ -109,7 +109,7 @@ namespace DataStructures.LL
             Length++;
         }
 
-        public void AddByIndex(int index, int value)
+        public void AddToIndex(int index, int value)
         {
             if (index == 0) //отдельная обработка рута
             {
@@ -345,7 +345,7 @@ namespace DataStructures.LL
                         if(tmp1.Value > tmp2.Value)
                         {
                             tmp1.Next = tmp1.Next.Next;
-                            AddByIndex(count, tmp2.Value);
+                            AddToIndex(count, tmp2.Value);
                             Length--;
                             tmp2 = tmp1.Next;
                         }
@@ -376,7 +376,7 @@ namespace DataStructures.LL
                         if (tmp1.Value < tmp2.Value)
                         {
                             tmp1.Next = tmp1.Next.Next;
-                            AddByIndex(count, tmp2.Value);
+                            AddToIndex(count, tmp2.Value);
                             Length--;
                             tmp2 = tmp1.Next;
                         }

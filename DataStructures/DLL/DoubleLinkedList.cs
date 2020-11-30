@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataStructures.DLL
 {
-    public class DoubleLinkedList
+    public class DoubleLinkedList : ILists
     {
         public int Length { get; set; }
 
@@ -126,7 +126,7 @@ namespace DataStructures.DLL
             Length++;
         }
 
-        public void AddToBeginning(int value)
+        public void AddToFirst(int value)
         {
             if (Length == 0) //отдельная обработка пустого списка
             {
@@ -145,7 +145,7 @@ namespace DataStructures.DLL
 
         //сделать метод который выдаёт ноду по нужному индексу, в котором условия 
         //как в индексаторе чтобы или бежать сначала, или с конца
-        public void AddByIndex(int value, int index)
+        public void AddToIndex(int value, int index)
         {
             if (Length == 0) //отдельная обработка пустого списка
             {
@@ -157,7 +157,7 @@ namespace DataStructures.DLL
             {
                 if (index == 0)
                 {
-                    AddToBeginning(value);
+                    AddToFirst(value);
                 }
                 else
                 {
@@ -177,7 +177,7 @@ namespace DataStructures.DLL
             }
         }
 
-        public void RemoveFromBeginning()
+        public void RemoveFirstElement()
         {
             if (Length != 0)
             {

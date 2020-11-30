@@ -47,7 +47,7 @@ namespace DataStructures.Tests
         {
             ArrayList expected = new ArrayList(expArr);
             ArrayList actual = new ArrayList(array);
-            actual.RemoveIndex(index);
+            actual.RemoveElementByIndex(index);
             Assert.AreEqual(expected, actual);
         }
 
@@ -57,7 +57,7 @@ namespace DataStructures.Tests
             ArrayList expected = new ArrayList(expArr);
             ArrayList actual = new ArrayList(array);
 
-            Assert.Throws<IndexOutOfRangeException>(() => { actual.RemoveIndex(index); });
+            Assert.Throws<IndexOutOfRangeException>(() => { actual.RemoveElementByIndex(index); });
         }
 
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4 })]
@@ -65,7 +65,7 @@ namespace DataStructures.Tests
         {
             ArrayList expected = new ArrayList(expArr);
             ArrayList actual = new ArrayList(array);
-            actual.RemoveLast();
+            actual.RemoveLastElement();
             Assert.AreEqual(expected, actual);
         }
 
@@ -76,7 +76,7 @@ namespace DataStructures.Tests
             ArrayList expected = new ArrayList(expArr);
             ArrayList actual = new ArrayList(array);
 
-            Assert.Throws<IndexOutOfRangeException>(() => { actual.RemoveLast(); });
+            Assert.Throws<IndexOutOfRangeException>(() => { actual.RemoveLastElement(); });
         }
 
         [TestCase(new int[] { }, 0)]
@@ -241,7 +241,7 @@ namespace DataStructures.Tests
         {
             ArrayList actual = new ArrayList(array);
             ArrayList expected = new ArrayList(expArr);
-            actual.RemoveValues(value);
+            actual.RemoveAllValues(value);
             Assert.AreEqual(expected, actual);
         }
 
@@ -276,7 +276,7 @@ namespace DataStructures.Tests
         {
             ArrayList actual = new ArrayList(array);
             ArrayList expected = new ArrayList(expArr);
-            actual.AddArrayToFirstIndex(values);
+            actual.AddArrayToBeginning(values);
             Assert.AreEqual(expected, actual);
         }
 
@@ -288,7 +288,7 @@ namespace DataStructures.Tests
         {
             ArrayList actual = new ArrayList(array);
             ArrayList expected = new ArrayList(expArr);
-            actual.AddArrayToEndOfList(values);
+            actual.AddArrayToEnd(values);
             Assert.AreEqual(expected, actual);
         }
 

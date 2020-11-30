@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace DataStructures
 {
-    public class ArrayList
+    public class ArrayList : ILists
     {
         private int[] _array; //поле
         //вынести 1.33 в константу
-        public int Length { get; private set; } //автоматическое свойство чтобы обращаться к полезной длине
+        public int Length { get; set; } //автоматическое свойство чтобы обращаться к полезной длине
 
         public ArrayList(int[] array) //конструктор 
             //конструктор создаёт пустой массив
@@ -98,15 +98,15 @@ namespace DataStructures
             _array[index] = value;
         }
 
-        public void RemoveFirst()
+        public void RemoveFirstElement()
         {
-            RemoveIndex(0);
+            RemoveElementByIndex(0);
         }
-        public void RemoveLast()
+        public void RemoveLastElement()
         {
             if (Length > 0)
             {
-                RemoveIndex(Length);
+                RemoveElementByIndex(Length);
             }
             else
             {
@@ -114,7 +114,7 @@ namespace DataStructures
             }
         }
 
-        public void RemoveIndex(int index)
+        public void RemoveElementByIndex(int index)
         {
             if (Length > 1)
             {
@@ -268,7 +268,7 @@ namespace DataStructures
             }
         }
 
-        public void RemoveValues(int value)
+        public void RemoveAllValues(int value)
         {
             if (Length == _array.Length)
             {
@@ -308,7 +308,7 @@ namespace DataStructures
             }
         }
 
-        public void AddArrayToFirstIndex(int[] values)
+        public void AddArrayToBeginning(int[] values)
         {
             //подвинуть все элементы на вэльюс.Ленгтх клеток
             //записать элементы из вэльюс на пустые места
@@ -327,7 +327,7 @@ namespace DataStructures
             Length += values.Length;
         }
 
-        public void AddArrayToEndOfList(int[] values)
+        public void AddArrayToEnd(int[] values)
         {
             if ((Length + values.Length) >= _array.Length)
             {

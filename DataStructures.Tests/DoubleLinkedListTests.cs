@@ -43,7 +43,7 @@ namespace DataStructures.Tests
         {
             DLL.DoubleLinkedList expected = new DLL.DoubleLinkedList(expArr);
             DLL.DoubleLinkedList actual = new DLL.DoubleLinkedList(array);
-            actual.AddToBeginning(value);
+            actual.AddToFirst(value);
             Assert.AreEqual(expected, actual);
         }
 
@@ -56,7 +56,7 @@ namespace DataStructures.Tests
         {
             DLL.DoubleLinkedList expected = new DLL.DoubleLinkedList(expArr);
             DLL.DoubleLinkedList actual = new DLL.DoubleLinkedList(array);
-            actual.AddByIndex(value, index);
+            actual.AddToIndex(value, index);
             Assert.AreEqual(expected, actual);
         }
 
@@ -67,7 +67,7 @@ namespace DataStructures.Tests
         {
             DLL.DoubleLinkedList expected = new DLL.DoubleLinkedList(expArr);
             DLL.DoubleLinkedList actual = new DLL.DoubleLinkedList(array);
-            actual.RemoveFromBeginning();
+            actual.RemoveFirstElement();
             Assert.AreEqual(expected, actual);
         }
     }

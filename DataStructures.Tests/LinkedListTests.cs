@@ -15,7 +15,7 @@ namespace DataStructures.Tests
             LL.LinkedList expected = new LL.LinkedList(expArr);
             LL.LinkedList actual = new LL.LinkedList(array);
 
-            actual.AddByIndex(index, value);
+            actual.AddToIndex(index, value);
             Assert.AreEqual(expected, actual);
         }
 
@@ -27,7 +27,7 @@ namespace DataStructures.Tests
             LL.LinkedList expected = new LL.LinkedList(expArr);
             LL.LinkedList actual = new LL.LinkedList(array);
 
-            actual.AddToBeginning(value);
+            actual.AddToFirst(value);
             Assert.AreEqual(expected, actual);
         }
 
