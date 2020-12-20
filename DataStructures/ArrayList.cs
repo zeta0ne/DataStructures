@@ -149,6 +149,7 @@ namespace DataStructures
                 if (_array[i] == value)
                 {
                     index = i;
+                    break;
                 }
             }
             return index;

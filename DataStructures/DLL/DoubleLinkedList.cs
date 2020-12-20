@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataStructures.DLL
 {
-    public class DoubleLinkedList : ILists
+    public class DoubleLinkedList //: ILists
     {
         public int Length { get; set; }
 
@@ -194,7 +194,27 @@ namespace DataStructures.DLL
             }
         }
 
+        public void RemoveLastElement()
+        {
+            if (Length != 0)
+            {
+                if (_tail.Prev != null)
+                {
+                    _tail.Prev.Next = null;
+                }
+                _tail = _tail.Prev;
+                Length--;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
 
+        public void RemoveElementByIndex(int index)
+        {
+
+        }
 
         public override bool Equals(object obj)
         {

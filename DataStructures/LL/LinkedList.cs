@@ -213,6 +213,7 @@ namespace DataStructures.LL
                 if (this[i] == value)
                 {
                     index = i;
+                    break;
                 }
             }
             return index;
