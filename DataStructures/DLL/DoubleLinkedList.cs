@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataStructures.DLL
 {
-    public class DoubleLinkedList //: ILists
+    public class DoubleLinkedList : ILists
     {
         public int Length { get; set; }
 
@@ -143,8 +143,6 @@ namespace DataStructures.DLL
             Length++;
         }
 
-        //сделать метод который выдаёт ноду по нужному индексу, в котором условия 
-        //как в индексаторе чтобы или бежать сначала, или с конца
         public void AddToIndex(int value, int index)
         {
             if (Length == 0) //отдельная обработка пустого списка
@@ -162,17 +160,26 @@ namespace DataStructures.DLL
                 else
                 {
                     Node val = new Node(value);
-                    Node cur = _root;
-                    for (int i = 1; i < index; i++) //дойти до значения перед нужным индексом
+                    if (index <= Length/2)
                     {
-                        cur = cur.Next;
+                        Node cur = ForwardCounter(index);
+                        Node tmp = cur.Next;
+                        cur.Next = val;
+                        val.Prev = cur;
+                        val.Next = tmp;
+                        tmp.Prev = val;
+                        Length++;
                     }
-                    Node tmp = cur.Next;
-                    cur.Next = val;
-                    val.Prev = cur;
-                    val.Next = tmp;
-                    tmp.Prev = val;
-                    Length++;
+                    else
+                    {
+                        Node cur = BackwardsCounter(index);
+                        Node tmp = cur.Next;
+                        cur.Next = val;
+                        val.Prev = cur;
+                        val.Next = tmp;
+                        tmp.Prev = val;
+                        Length++;
+                    }
                 }
             }
         }
@@ -213,7 +220,187 @@ namespace DataStructures.DLL
 
         public void RemoveElementByIndex(int index)
         {
+            if (Length != 0)
+            {
+                if (index == 0)
+                {
+                    RemoveFirstElement();
+                }
+                else if (index == Length - 1)
+                {
+                    RemoveLastElement();
+                }
+                else if (index <= Length / 2)
+                {
+                    Node cur = ForwardCounter(index);
+                    cur.Next = cur.Next.Next;
+                    cur.Next.Prev = cur;
+                    Length--;
+                }
+                else
+                {
+                    Node cur = BackwardsCounter(index);
+                    cur.Next = cur.Next.Next;
+                    cur.Next.Prev = cur;
+                    Length--;
+                }
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
 
+        public int GetValueByIndex(int index)
+        {
+            return this[index];
+        }
+
+        public int GetIndexByValue(int value)
+        {
+            if (Length != 0)
+            {
+                int index = -1;
+                Node cur = _root;
+                for (int i = 0; i < Length; i++)
+                {
+                    if (cur.Value == value)
+                    {
+                        index = i;
+                        break;
+                    }
+                    else
+                    {
+                        cur = cur.Next;
+                    }
+                }
+                if (index == -1)
+                {
+                    throw new Exception();
+                }
+                return index;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
+        public void ChangeValueByIndex(int index, int value)
+        {
+            if (Length != 0)
+            {
+                Node val = new Node(value);
+                Node cur = new Node();
+                if (index == 0)
+                {
+                    RemoveFirstElement();
+                    AddToFirst(value);
+                }
+                else if (index == Length -1)
+                {
+                    RemoveLastElement();
+                    AddToEnd(value);
+                }
+                else if (index <= Length / 2)
+                {
+                    cur = ForwardCounter(index);
+                    Node tmp = cur.Next.Next;
+                    cur.Next = val;
+                    val.Prev = cur;
+                    val.Next = tmp;
+                    tmp.Prev = val;
+                }
+                else
+                {
+                    cur = BackwardsCounter(index);
+                    Node tmp = cur.Next.Next;
+                    cur.Next = val;
+                    val.Prev = cur;
+                    val.Next = tmp;
+                    tmp.Prev = val;
+                }
+                
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
+        public void Reverse()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetMaxValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetMinValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetMaxValueIndex()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetMinValueIndex()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SortByAscending()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SortByDescending()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveAllValues(int value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveFirstValue(int value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddArrayToBeginning(int[] values)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddArrayToEnd(int[] values)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddArrayToIndex(int[] values, int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveNElementsFromEnd(int amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveNElementsFromBeginning(int amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveNElementsFromIndex(int amount, int index)
+        {
+            throw new NotImplementedException();
         }
 
         public override bool Equals(object obj)
@@ -265,6 +452,26 @@ namespace DataStructures.DLL
                 }
             }
             return s;
+        }
+
+        private Node ForwardCounter(int index)
+        {
+            Node cur = _root;
+            for (int i = 0; i < index - 1; i++) //дойти до значения перед нужным индексом
+            {
+                cur = cur.Next;
+            }
+            return cur;
+        }
+
+        private Node BackwardsCounter(int index)
+        {
+            Node cur = _tail;
+            for (int i = Length; i > index; i--)
+            {
+                cur = cur.Prev;
+            }
+            return cur;
         }
     }
 }
