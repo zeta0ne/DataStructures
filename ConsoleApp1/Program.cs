@@ -1,5 +1,6 @@
 ﻿using System;
 using DataStructures;
+using DataStructures.DLL;
 
 namespace ConsoleApp1
 {
@@ -7,15 +8,17 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            ArrayList AA = new ArrayList(new int[0]);
-            Random rnd = new Random();
-            for (int i = 0; i < 20; i++)
-            {
-                AA.AddToEnd(rnd.Next(1, 10));
-                Console.Write(AA[i] + " ");
-            }
-            Console.WriteLine();
-            Console.WriteLine(AA.GetIndexByValue(3));
+            DoubleLinkedList DLL = new DoubleLinkedList(new int[] { 1, 2, 3, 4 });
+            DLL.Reverse();
+            //ArrayList AA = new ArrayList(new int[0]);
+            //Random rnd = new Random();
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    AA.AddToEnd(rnd.Next(1, 10));
+            //    Console.Write(AA[i] + " ");
+            //}
+            //Console.WriteLine();
+            //Console.WriteLine(AA.GetIndexByValue(3));
 
             //ArrayList AA2 = new ArrayList(new int[0]);
 

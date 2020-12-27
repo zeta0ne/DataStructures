@@ -117,5 +117,62 @@ namespace DataStructures.Tests
             actual.ChangeValueByIndex(index, value);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 4, 3, 2, 1 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 })]
+        [TestCase(new int[] { 1 }, new int[] { 1 })]
+        public void ReverseTest(int[] array, int[] exp)
+        {
+            DoubleLinkedList expected = new DoubleLinkedList(exp);
+            DoubleLinkedList actual = new DoubleLinkedList(array);
+            actual.Reverse();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4 }, 4 )]
+        [TestCase(new int[] { 1, 2, 3 }, 3)]
+        [TestCase(new int[] { 1 }, 1)]
+        public void GetMaxValueTest(int[] array, int expected)
+        {
+            DoubleLinkedList arr = new DoubleLinkedList(array);
+            int actual = arr.GetMaxValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 2, 3, 1, 4 }, 1)]
+        [TestCase(new int[] { 2, 3, 0, 1 }, 0)]
+        [TestCase(new int[] { 1 }, 1)]
+        public void GetMinValueTest(int[] array, int expected)
+        {
+            DoubleLinkedList arr = new DoubleLinkedList(array);
+            int actual = arr.GetMinValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 10, 20, -1 }, 1)]
+        [TestCase(new int[] { 0, -1 }, 0)]
+        [TestCase(new int[] { 1, 0, -1 }, 0)]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 3)]
+        [TestCase(new int[] { 100, 2, -1, 200 }, 3)]
+        [TestCase(new int[] { 100, 2, -1, 20 }, 0)]
+        public void GetMaxValueIndexTest(int[] array, int expected)
+        {
+            DoubleLinkedList arr = new DoubleLinkedList(array);
+            int actual = arr.GetMaxValueIndex();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 10, 20, -1 }, 2)]
+        [TestCase(new int[] { 0, -1 }, 1)]
+        [TestCase(new int[] { 1, 0, -1 }, 2)]
+        [TestCase(new int[] { 1, 2, 3, 4 }, 0)]
+        [TestCase(new int[] { 100, 2, -1, 200 }, 2)]
+        [TestCase(new int[] { 100, 2, -1, 20 }, 2)]
+        public void GetMinValueIndexTest(int[] array, int expected)
+        {
+            DoubleLinkedList arr = new DoubleLinkedList(array);
+            int actual = arr.GetMinValueIndex();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

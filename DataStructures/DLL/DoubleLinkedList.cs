@@ -330,27 +330,89 @@ namespace DataStructures.DLL
 
         public void Reverse()
         {
-            throw new NotImplementedException();
+            if (Length > 0)
+            {
+                Node current = _root;
+                Node temp = null;
+                while (current != null)
+                {
+                    temp = current.Next;
+                    current.Next = current.Prev;
+                    current.Prev = temp;
+                    current = current.Prev;
+                }
+                temp = _root;
+                _root = _tail;
+                _tail = temp;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
         }
 
         public int GetMaxValue()
         {
-            throw new NotImplementedException();
+            Node tmp = _root;
+            Node val = _root;
+            for (int i = 1; i <= Length; i++)
+            {
+                if (tmp.Value > val.Value)
+                {
+                    val = tmp;
+                }
+                tmp = tmp.Next;
+            }
+            return val.Value;
         }
 
         public int GetMinValue()
         {
-            throw new NotImplementedException();
+            Node tmp = _root;
+            Node val = _root;
+            for (int i = 1; i <= Length; i++)
+            {
+                if (tmp.Value < val.Value)
+                {
+                    val = tmp;
+                }
+                tmp = tmp.Next;
+            }
+            return val.Value;
         }
 
         public int GetMaxValueIndex()
         {
-            throw new NotImplementedException();
+            Node tmp = _root;
+            Node val = _root;
+            int index = 0;
+            for (int i = 1; i <= Length; i++)
+            {
+                if (tmp.Value > val.Value)
+                {
+                    index = i - 1;
+                    val = tmp;
+                }
+                tmp = tmp.Next;
+            }
+            return index;
         }
 
         public int GetMinValueIndex()
         {
-            throw new NotImplementedException();
+            Node tmp = _root;
+            Node val = _root;
+            int index = 0;
+            for (int i = 1; i <= Length; i++)
+            {
+                if (tmp.Value < val.Value)
+                {
+                    index = i - 1;
+                    val = tmp;
+                }
+                tmp = tmp.Next;
+            }
+            return index;
         }
 
         public void SortByAscending()
